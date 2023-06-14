@@ -1,0 +1,12 @@
+---
+- name: Deploy NGINX Application
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Log in to ECR and pull container image
+      shell: "$(aws ecr get-login --no-include-email --region ap-south-1) && docker pull 552254951688.dkr.ecr.ap-south-1.amazonaws.com/ecrtask:latest"
+
+    - name: Include nginx-role
+      include_role:
+        name: nginx-role
+

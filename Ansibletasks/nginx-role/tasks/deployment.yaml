@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: nginx
+          image: 552254951688.dkr.ecr.ap-south-1.amazonaws.com/ecrtask@sha256:93d5eb20cb053695242b52ebb256fb12193aef3e94289ac41d5f815e203c8c2b
+          ports:
+            - containerPort: 80
+              #imagePullSecrets:
+        #- name: secretecr
+

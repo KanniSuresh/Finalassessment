@@ -1,0 +1,9 @@
+---
+- name: Create deployment
+  become: true
+  shell: kubectl apply -f /root/Ansibletasks/nginx-role/tasks/deployment.yaml
+
+- name: Create service
+  become: true
+  shell: kubectl apply -f /root/Ansibletasks/nginx-role/tasks/service.yaml
+
